@@ -13,11 +13,16 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass', '~> 3.3.6'
 
-gem 'rails_admin'
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+gem 'rack-pjax', github: 'afcapel/rack-pjax', branch: 'master' 
+gem 'remotipart', github: 'mshibuya/remotipart', ref: '3a6acb3'
+
+gem 'therubyracer'
+
 gem 'devise'
+gem 'omniauth-facebook'
 gem 'devise-i18n'
 gem 'cancancan'
-gem 'omniauth-facebook'
 
 gem 'kaminari'
 gem 'aasm'
@@ -44,4 +49,5 @@ group :development do
   gem 'debase'
   gem 'ruby-debug-ide'
 end
+
 
