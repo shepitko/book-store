@@ -1,6 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email){ |n| "email#{n}@email.com" }
-    password "secret"
+    email{ FFaker::Internet.email }
+    password{ Devise.friendly_token.first(8) }
+    factory :admin do
+      admin true
+    end
   end
+  
 end
