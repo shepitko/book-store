@@ -9,12 +9,14 @@ RSpec.describe HomeController, type: :controller do
     end
 
     it "an array all bestsellers" do
-      #create(:book_with_authors, authors_count: 15)
-      books = create(:book_with_authors, 15)
-      expect(assigns(:bestsellers.length)).to be <= 6
-      expect(assigns(:bestsellers)).to match(books)
+     
+      get :index
+
+      books = create_list(:book, 9)
+      bestsellers = assigns(:books)
+      expect(bestsellers.length).to be <= 6
+      expect(books).to include(*bestsellers)
     end
   end
 
 end
-#https://github.com/thoughtbot/factory_girl/blob/master/GETTING_STARTED.md

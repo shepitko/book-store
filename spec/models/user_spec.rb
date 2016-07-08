@@ -8,6 +8,7 @@ RSpec.describe User, type: :model do
   end
   context 'associations' do
     it { should have_many(:authorizations) }
+    it { should have_many(:reviews) }
   end
   
   describe '.find_for_oauth' do

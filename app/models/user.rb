@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :trackable, :validatable,
          :recoverable, :rememberable,  :omniauthable, :omniauth_providers => [:facebook]
   has_many :authorizations
+  has_many :reviews
 
   def self.find_for_oauth(auth, current_user=nil)
     authorization = Authorization.find_for_oauth(auth)

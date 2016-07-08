@@ -33,6 +33,7 @@ gem 'mini_magick'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5.0.beta'
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'capybara'
 end
