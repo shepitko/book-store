@@ -1,5 +1,5 @@
 class AddAddressRefToOrders < ActiveRecord::Migration[5.0]
   def change
-    add_reference :orders, :address, foreign_key: true
+    add_reference :orders, :address, foreign_key: true, index: true
   end
 end
