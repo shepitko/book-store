@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :credit_card do
-    card_number 1
-    month 1
-    year 1
-    code 1
+    card_number 4988738709893837
+    month 12
+    year 2020
+    code 763
   end
 end

@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable,  :omniauthable, :omniauth_providers => [:facebook]
   has_many :authorizations
   has_many :reviews
+  has_many :addresses
+  has_many :orders
+  has_one :credit_card
 
   def self.find_for_oauth(auth, current_user=nil)
     authorization = Authorization.find_for_oauth(auth)
