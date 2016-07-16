@@ -3,7 +3,9 @@ require 'rails_helper'
 
 
 RSpec.configure do |config|
-
+  
+  config.include SessionHelpers, type: :feature
+  
   config.use_transactional_fixtures = false
   config.before(:suite) do
     # This says that before the entire test suite runs, clear the test database out completely.
@@ -24,4 +26,5 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+  Capybara.javascript_driver = :webkit
 end

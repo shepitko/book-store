@@ -36,6 +36,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'capybara-webkit'
 end
 
 group :test do

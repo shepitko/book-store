@@ -2,6 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 require 'rspec/rails'
 require 'devise'
 
@@ -34,4 +35,5 @@ RSpec.configure do |config|
   end
 
   config.include Devise::TestHelpers, type: :controller
+  config.include Devise::TestHelpers, type: :view
 end
