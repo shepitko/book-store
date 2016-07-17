@@ -1,0 +1,35 @@
+%nav.navbar.navbar-default{role: "navigation"}
+  / Brand and toggle get grouped for better mobile display
+  .container
+    .navbar-header
+      %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to 'The Bookstore', root_path, class: "navbar-brand"
+    / Collect the nav links, forms, and other content for toggling
+    .collapse.navbar-collapse.navbar-ex1-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          =link_to t('nav.main'), root_path
+        %li
+          =link_to t('nav.shop'), '/shop'
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          =link_to '/cart' do
+            %i.glyphicon.glyphicon-shopping-cart 
+            =t('nav.cart')
+        -if user_signed_in?
+          %li
+            =link_to t('nav.settings'), settings_path
+          %li
+            =link_to t('nav.orders'), '/orders'
+          %li
+            =link_to t('nav.logout'), destroy_user_session_path, method: :delete
+        -else
+          %li
+            =link_to t('nav.login'), new_user_session_path
+          %li
+            =link_to t('nav.registration'), new_user_registration_path
+            

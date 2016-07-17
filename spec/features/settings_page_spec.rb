@@ -32,7 +32,7 @@ feature 'Settings page', :js do
         expect(page).to have_content('You didn\'t check checkbox')
       end
     end
-    describe 'edit email' do
+    describe 'email' do
       let(:save_email){click_on 'save_email'}
 
       scenario 'not valid' do
@@ -41,7 +41,7 @@ feature 'Settings page', :js do
         expect(page).to have_content('invalid email')
       end
 
-      scenario 'chenged' do
+      scenario 'changed' do
         fill_in 'Email', with: 'new@email.com'
         save_email
         expect(page).to have_content('email was changed')
