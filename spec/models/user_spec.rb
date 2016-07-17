@@ -10,7 +10,8 @@ RSpec.describe User, type: :model do
     it { should have_many(:authorizations) }
     it { should have_many(:reviews) }
     it { should have_many(:orders) }
-    it { should have_many(:addresses) }
+    it { should belong_to(:billing_address) }
+    it { should belong_to(:shipping_address) }
     it { should have_one(:credit_card) }
   end
   

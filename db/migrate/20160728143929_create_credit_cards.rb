@@ -4,7 +4,7 @@ class CreateCreditCards < ActiveRecord::Migration[5.0]
       t.integer :card_number
       t.integer :month
       t.integer :year
-      t.integer :code
+      t.integer :cvv
     end
   end
 end

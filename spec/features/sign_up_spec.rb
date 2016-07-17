@@ -6,7 +6,7 @@ feature 'User sign up' do
     logout(:user)
   end
   scenario 'with valid fields' do 
-    sign_up_with(user.email, user.password)
+    sign_up_with("test@email.tt", '12345678')
     expect(page).to have_content('Welcome! You have signed up successfully')
   end
 

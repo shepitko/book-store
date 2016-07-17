@@ -8,11 +8,8 @@ RSpec.describe Address, type: :model do
      it { should validate_presence_of(:city) }
      it { should validate_presence_of(:zip) }
      it { should validate_presence_of(:telephone) }
-     it { should validate_presence_of(:type_address) }
   end
   context 'associations' do
     it { should belong_to(:country) }
-    it { should belong_to(:user) }
-    it { should have_many(:orders) }
   end
 end

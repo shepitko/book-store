@@ -16,17 +16,16 @@ ActiveRecord::Schema.define(version: 20160728143942) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "street"
-    t.string  "city"
-    t.integer "zip"
-    t.string  "telephone"
-    t.integer "type_address"
-    t.integer "country_id"
-    t.integer "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "street"
+    t.string   "city"
+    t.integer  "zip"
+    t.string   "telephone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "country_id"
     t.index ["country_id"], name: "index_addresses_on_country_id", using: :btree
-    t.index ["user_id"], name: "index_addresses_on_user_id", using: :btree
   end
 
   create_table "authorizations", force: :cascade do |t|
@@ -84,7 +83,7 @@ ActiveRecord::Schema.define(version: 20160728143942) do
     t.integer "card_number"
     t.integer "month"
     t.integer "year"
-    t.integer "code"
+    t.integer "cvv"
     t.integer "user_id"
     t.index ["user_id"], name: "index_credit_cards_on_user_id", using: :btree
   end
@@ -105,18 +104,20 @@ ActiveRecord::Schema.define(version: 20160728143942) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "state"
-    t.decimal  "sum",            precision: 10, scale: 2
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.decimal  "sum",                 precision: 10, scale: 2
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
     t.integer  "user_id"
-    t.integer  "address_id"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
     t.integer  "coupon_id"
     t.integer  "delivery_id"
     t.integer  "credit_card_id"
-    t.index ["address_id"], name: "index_orders_on_address_id", using: :btree
+    t.index ["billing_address_id"], name: "index_orders_on_billing_address_id", using: :btree
     t.index ["coupon_id"], name: "index_orders_on_coupon_id", using: :btree
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id", using: :btree
     t.index ["delivery_id"], name: "index_orders_on_delivery_id", using: :btree
+    t.index ["shipping_address_id"], name: "index_orders_on_shipping_address_id", using: :btree
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -145,18 +146,20 @@ ActiveRecord::Schema.define(version: 20160728143942) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.index ["billing_address_id"], name: "index_users_on_billing_address_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["shipping_address_id"], name: "index_users_on_shipping_address_id", using: :btree
   end
 
   add_foreign_key "addresses", "countries"
-  add_foreign_key "addresses", "users"
   add_foreign_key "authorizations", "users"
   add_foreign_key "books", "categories"
   add_foreign_key "credit_cards", "users"
   add_foreign_key "order_items", "books"
   add_foreign_key "order_items", "orders"
-  add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "coupons"
   add_foreign_key "orders", "credit_cards"
   add_foreign_key "orders", "deliveries"

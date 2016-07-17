@@ -3,11 +3,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :trackable, :validatable,
          :recoverable, :rememberable,  :omniauthable, :omniauth_providers => [:facebook]
+  
+  has_many :orders       
+  belongs_to :billing_address, class_name: 'Address'
+  belongs_to :shipping_address, class_name: 'Address'
   has_many :authorizations
   has_many :reviews
-  has_many :addresses
-  has_many :orders
   has_one :credit_card
+
 
   def self.find_for_oauth(auth, current_user=nil)
     authorization = Authorization.find_for_oauth(auth)
